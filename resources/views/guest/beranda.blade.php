@@ -8,6 +8,7 @@
 
      <div class="page-header">
  		 <h1>Silahkan Login terlebih dahulu</h1>
+ 		 <h5>jika belum ada akun, <a href="{{route('guest.daftar')}}">daftar diisni </a> </h5>
 	</div>
 	
 

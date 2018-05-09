@@ -24,6 +24,12 @@ Route::post('/login',[
 	'middleware' => 'guest'
 ]);
 
+Route::get('/daftar',[
+	'uses' => 'GuestController@getSignup',
+	'as' => 'guest.daftar',
+	'middleware' => 'guest'
+]);
+
 
 Route::get('/user/landing_page_user',[
 	'uses' => 'UserController@getLandingPage',

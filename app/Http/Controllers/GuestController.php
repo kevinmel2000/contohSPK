@@ -27,4 +27,8 @@ class GuestController extends Controller
     	
     }
 
+    public function getSignup(){
+        return view('guest.daftar');
+    }
+
 }

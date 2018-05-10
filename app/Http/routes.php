@@ -12,7 +12,7 @@
 */
 
 
-Route::get('/home',[
+Route::get('/',[
 	'uses' => 'GuestController@getGuestHome',
 	'as'   =>  'guest.home',
 	'middeware' => 'guest'
@@ -47,4 +47,10 @@ Route::get('/logout',[
 	'uses' => 'UserController@getLogout',
 	'as' => 'logout',
 	'middleware' => 'auth'
+]);
+
+Route::post('/signup',[
+  'uses' => 'UserController@postSignup',
+  'as' => 'guest.post_daftar',
+  'middleware' => 'guest'
 ]);

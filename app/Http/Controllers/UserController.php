@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use Auth;
 use Session;
+use App\User;
 
 class UserController extends Controller
 {
@@ -54,6 +55,37 @@ class UserController extends Controller
          }
 
        }
+
+
+     public function postSignup(Request  $request){
+        $this->validate($request,[
+            'email'    => 'email|required|unique:users',
+            'password' => 'required|min:4',
+            'nama'     => 'required|min:4'
+        ]);
+
+        $user= new User([
+            'email'=> $request->input('email'),
+            'name' => $request->input('nama'),
+            'password' => bcrypt($request->input('password')),
+            'type' => 'user'
+        ]);
+        $user->save();
+
+        $message= "sukses buat akun, silahkan ke halaman login";
+        return redirect()->back()-> with ('message', $message);
+        /*
+        Auth::login($user);
+       if (Session::has('oldUrl')){
+           $oldUrl = Session::get('oldUrl');
+           Session::forget('oldUrl');
+           return redirect()->to($oldUrl);
+       }
+
+        $message= "selamat anda sudah berhasil membuat akun";
+        return redirect()->route('user.landing')->with('message',$message);*/
+    }
+
 
 
 

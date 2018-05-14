@@ -21,7 +21,7 @@ class UserController extends Controller
     }
 
      public function getLogout(){
-    	Auth::logout();
+    	Auth::logout(); 
     	return redirect()->route('guest.home');
     }
 

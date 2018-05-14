@@ -15,7 +15,6 @@
 	<div class="well">
 	<hr>
 	<div >
-		
 		<form class="form-horizontal" action="{{route('post.login')}}" method="post">
 		  <div class="form-group">
 		    <label for="email" class="col-sm-2 control-label">Email</label>

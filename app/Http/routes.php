@@ -54,3 +54,22 @@ Route::post('/signup',[
   'as' => 'guest.post_daftar',
   'middleware' => 'guest'
 ]);
+
+Route::get('/user/diagnosa',[
+  'uses' => 'UserController@getDiagnosa',
+  'as' => 'user.diagnosa',
+  'middleware' => ['auth','user']
+]);
+
+Route::get('/user/diagnosa/hasil/{total}',[
+  'uses' => 'UserController@getHasilDiagnosa',
+  'as' => 'user.hasildiagnosa',
+  'middleware' => ['auth','user']
+]);
+
+
+Route::post('/user/postdiagnosa',[
+  'uses' => 'UserController@postDiagnosa',
+  'as' => 'user.postdiagnosa',
+  'middleware' => ['auth','user']
+]);

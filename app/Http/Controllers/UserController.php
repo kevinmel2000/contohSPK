@@ -8,6 +8,8 @@ use App\Http\Requests;
 use Auth;
 use Session;
 use App\User;
+use App\PenyakitModel;
+use App\GejalaModel;
 
 class UserController extends Controller
 {
@@ -84,6 +86,51 @@ class UserController extends Controller
 
         $message= "selamat anda sudah berhasil membuat akun";
         return redirect()->route('user.landing')->with('message',$message);*/
+    }
+
+
+    public function getDiagnosa(){
+        $gejala= GejalaModel::all();
+        return view('users.user_diagnosa')->with('sakit', $gejala);
+
+
+    }
+
+    public function getHasilDiagnosa($total){
+        return view('users/user_hasil')->with(['count'=> $total]);
+    }
+
+    public function postDiagnosa(Request  $request){
+
+        $count=0;
+        $input= $request->input('gejala');
+        
+        $count = count($input);
+        
+        $arr2=[43];
+        $arr3=[43];
+
+        for ($i=0; $i < 43; $i++) { 
+            $arr2[$i]=0;
+            $arr3[$i]=0;
+        }
+
+        for ($i=0; $i < $count; $i++) { 
+            $arr2[$i]= $input[$i];
+        }
+
+        for ($i=0; $i < 43; $i++) { 
+            $x= $arr2[$i];
+            $arr3[$x]=1;
+        }
+
+
+
+        dd($arr3);
+
+       
+        return redirect()->route('user.hasildiagnosa',['count' => $count ]);
+
     }
 
 

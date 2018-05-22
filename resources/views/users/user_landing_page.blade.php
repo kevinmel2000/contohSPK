@@ -7,8 +7,8 @@
 @section('content')
 
     <div class="jumbotron">
-		  <h1>Selamat datang di sistem pakar diagnosa penyakit autisme </h1>
-		  <p> Sistem ini dirancang untuk membantu anda dalam mendeteksi dini autisme pada anak</p>
+		  <h1>Selamat datang di sistem pakar diagnosa penyakit anak </h1>
+		  <p> Sistem ini dirancang untuk membantu anda dalam mendeteksi penyakit pada anak</p>
 		
 	</div>
 	<hr>
@@ -51,7 +51,7 @@
 			      <div class="caption">
 			        <h3>Tambah Diagnosa baru</h3>
 			        <p>Periksa dan deteksi gejala pada anak anda</p>
-			         <a href="#" class="btn btn-default" role="button">Lihat</a></p>
+			         <a href="{{route('user.diagnosa')}}" class="btn btn-default" role="button">Lihat</a></p>
 			      </div>
 			    </div> 
 			  </div>

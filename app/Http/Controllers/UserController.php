@@ -10,6 +10,7 @@ use Session;
 use App\User;
 use App\PenyakitModel;
 use App\GejalaModel;
+use Illuminate\Support\Facades\DB;
 
 class UserController extends Controller
 {
@@ -101,16 +102,16 @@ class UserController extends Controller
     }
 
     public function postDiagnosa(Request  $request){
-
+        $totalgejala=43;
         $count=0;
         $input= $request->input('gejala');
         
         $count = count($input);
         
-        $arr2=[43];
-        $arr3=[43];
+        $arr2=[$totalgejala];
+        $arr3=[$totalgejala];
 
-        for ($i=0; $i < 43; $i++) { 
+        for ($i=0; $i < $totalgejala; $i++) { 
             $arr2[$i]=0;
             $arr3[$i]=0;
         }
@@ -119,16 +120,125 @@ class UserController extends Controller
             $arr2[$i]= $input[$i];
         }
 
-        for ($i=0; $i < 43; $i++) { 
+        for ($i=0; $i<$totalgejala; $i++) { 
             $x= $arr2[$i];
-            $arr3[$x]=1;
+            if ($x==0) {
+               $arr3[$x]=0;
+            }
+            else{
+                 $arr3[$x]=1;  
+            }
+           
         }
 
+        
 
+       //Rule 1
+        if ( ($arr3[1]==1) && ($arr3[2]==1)&& ($arr3[11]==1) && ($arr3[12]==1)&& ($arr3[13]==1)&&($arr3[14]==1)&&($arr3[15]==1)) {
+            $id=2;
+            $penyakit = PenyakitModel::where('id_penyakit',$id)->first();
+            echo ($penyakit);
+        }
 
-        dd($arr3);
+        //Rule 2
+        if ( ($arr3[1]==1) && ($arr3[11]==1)&& ($arr3[23]==1) && ($arr3[24]==1)&& ($arr3[25]==1)) {
+            $id=5;
+            $penyakit = PenyakitModel::where('id_penyakit',$id)->first();
+            echo ($penyakit);
+        }
 
-       
+        //Rule 3
+        if ( ($arr3[1]==1) && ($arr3[4]==1)&& ($arr3[20]==1) && ($arr3[21]==1)&& ($arr3[22]==1)) {
+            $id=4;
+            $penyakit = PenyakitModel::where('id_penyakit',$id)->first();
+            echo ($penyakit);
+        }
+
+        //Rule4
+        if ( ($arr3[1]==1) && ($arr3[2]==1)&& ($arr3[16]==1) && ($arr3[17]==1)&& ($arr3[18]==1)&&($arr3[19]==1)) {
+            $id=3;
+            $penyakit = PenyakitModel::where('id_penyakit',$id)->first();
+            echo ($penyakit);
+        }
+
+        //Rule5
+        if ( ($arr3[1]==1) && ($arr3[2]==1)&& ($arr3[3]==1) && ($arr3[4]==1)&& ($arr3[5]==1)&&($arr3[6]==1)&&($arr3[7]==1)&&($arr3[8]==1)&&($arr3[9]==1)&&($arr3[10]==1)) {
+            $id=1;
+            $penyakit = PenyakitModel::where('id_penyakit',$id)->first();
+            echo ($penyakit);
+        }
+
+        //Rule6
+         if ( ($arr3[1]==1) && ($arr3[11]==1)&& ($arr3[23]==1) && ($arr3[26]==1)&& ($arr3[27]==1)&&($arr3[28]==1)) {
+            $id=6;
+            $penyakit = PenyakitModel::where('id_penyakit',$id)->first();
+            echo ($penyakit);
+        }
+        
+         //Rule7
+         if ( ($arr3[1]==1) && ($arr3[11]==4)&& ($arr3[29]==1) && ($arr3[30]==1)) {
+            $id=7;
+            $penyakit = PenyakitModel::where('id_penyakit',$id)->first();
+            echo ($penyakit);
+        }
+
+        
+
+        
+        $arr_p1=array("1","2","11","12","13","14","15");
+        $result1=array_intersect($input,$arr_p1);      
+        $c_01= count($result1);
+        $c_02= count($arr_p1);
+        $persen1= ($c_01/$c_02)*100;
+
+        $arr_p2=array("1","15","23","24","25");
+        $result2=array_intersect($input,$arr_p2);      
+        $c_11= count($result2);
+        $c_12= count($arr_p2);
+        $persen2= ($c_11/$c_12)*100;
+
+        $arr_p3=array("1","4","20","21","22");
+        $result3=array_intersect($input,$arr_p3);      
+        $c_21= count($result3);
+        $c_22= count($arr_p3);
+        $persen3= ($c_21/$c_22)*100;
+
+        $arr_p4=array("1","2","16","17","18","19");
+        $result4=array_intersect($input,$arr_p4);      
+        $c_31= count($result4);
+        $c_32= count($arr_p4);
+        $persen4= ($c_31/$c_32)*100;
+
+        $arr_p5=array("1","2","3","4","5","6","7","8","9","10");
+        $result5=array_intersect($input,$arr_p5);      
+        $c_41= count($result5);
+        $c_42= count($arr_p5);
+        $persen5= ($c_41/$c_42)*100;
+
+        $arr_p6=array("1","11","23","26","27","28");
+        $result6=array_intersect($input,$arr_p6);      
+        $c_51= count($result6);
+        $c_52= count($arr_p6);
+        $persen6= ($c_51/$c_52)*100;
+
+        $arr_p7=array("1","4","24","29","30");
+        $result7=array_intersect($input,$arr_p7);      
+        $c_61= count($result7);
+        $c_62= count($arr_p7);
+        $persen7= ($c_61/$c_62)*100;
+
+        $t_persen = array($persen1,$persen2,$persen3,$persen4,$persen5,$persen6,$persen7);
+        $temp=0;
+
+        $bigger=[];
+        for ($i=0; $i <7 ; $i++) { 
+            if ($t_persen[$i]>=60) {
+                $bigger[$i]=$t_persen[$i];
+            }
+        }
+
+        dd($t_persen);
+        
         return redirect()->route('user.hasildiagnosa',['count' => $count ]);
 
     }

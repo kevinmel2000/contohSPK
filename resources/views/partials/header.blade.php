@@ -8,7 +8,7 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="{{url('/')}}">Sistem Pendukung Keputusan</a>
+      <a class="navbar-brand" href="{{url('/')}}">Sistem Pakar </a>
     </div>
 
     <!-- Collect the nav links, forms, and other content for toggling -->

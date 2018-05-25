@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class Terapi extends Migration
+class DiagnosaGejala extends Migration
 {
     /**
      * Run the migrations.
@@ -12,10 +12,10 @@ class Terapi extends Migration
      */
     public function up()
     {
-        Schema::create('Terapi', function (Blueprint $table) {
+         Schema::create('diagnosa_gejala', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name');
-            $table->string('code');
+            $table->integer('id_diagnosa');
+            $table->integer('id_gejala');
             $table->timestamps();
         });
     }

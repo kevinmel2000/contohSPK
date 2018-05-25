@@ -61,7 +61,7 @@ Route::get('/user/diagnosa',[
   'middleware' => ['auth','user']
 ]);
 
-Route::get('/user/diagnosa/hasil/{total}',[
+Route::get('/user/diagnosa/hasil',[
   'uses' => 'UserController@getHasilDiagnosa',
   'as' => 'user.hasildiagnosa',
   'middleware' => ['auth','user']

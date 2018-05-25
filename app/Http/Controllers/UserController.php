@@ -10,6 +10,8 @@ use Session;
 use App\User;
 use App\PenyakitModel;
 use App\GejalaModel;
+use App\DiagnosaModel;
+use App\DiagnosaGejalaModel;
 use Illuminate\Support\Facades\DB;
 
 class UserController extends Controller
@@ -97,8 +99,8 @@ class UserController extends Controller
 
     }
 
-    public function getHasilDiagnosa($total){
-        return view('users/user_hasil')->with(['count'=> $total]);
+    public function getHasilDiagnosa(){
+        return view('users/user_hasil');
     }
 
     public function postDiagnosa(Request  $request){
@@ -228,18 +230,41 @@ class UserController extends Controller
         $persen7= ($c_61/$c_62)*100;
 
         $t_persen = array($persen1,$persen2,$persen3,$persen4,$persen5,$persen6,$persen7);
-        $temp=0;
-
-        $bigger=[];
+        $p_big=$t_persen[0];
+        $big=0;
+        $big_index=0;
+        
         for ($i=0; $i <7 ; $i++) { 
-            if ($t_persen[$i]>=60) {
-                $bigger[$i]=$t_persen[$i];
+            if ($p_big<$t_persen[$i]) {
+                $p_big=$t_persen[$i];
+                $big_index=$i;
             }
         }
 
+        $diagnosa= new DiagnosaModel();
+        $diagnosa->id_user = Auth::user()->id;
+        $diagnosa->id_penyakit= $big_index;
+        $diagnosa->save();
+
+        for ($i=0; $i < $count ; $i++) { 
+            $diagnosa_gejala = new DiagnosaGejalaModel;
+            $diagnosa_gejala->id_diagnosa = $diagnosa->id;
+            $diagnosa_gejala->id_gejala= $input[$i];
+            $diagnosa_gejala->save();
+        }
+
+
+        /*
+        echo($p_big);
+        echo ($big_index);
         dd($t_persen);
+        */
         
-        return redirect()->route('user.hasildiagnosa',['count' => $count ]);
+        $pesan= "Diagnosa Telah dibuat, silahkan cek hasil dan nilai "
+
+        
+        
+        return redirect()->route('user.hasildiagnosa')->with(['message'=> $pesan]);
 
     }
 

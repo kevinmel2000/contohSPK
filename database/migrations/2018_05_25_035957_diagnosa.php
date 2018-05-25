@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class Spektrum extends Migration
+class Diagnosa extends Migration
 {
     /**
      * Run the migrations.
@@ -12,13 +12,12 @@ class Spektrum extends Migration
      */
     public function up()
     {
-        
-        Schema::create('spektrum', function (Blueprint $table) {
-            $table->string('kode_spektrum')->index();
-            $table->string('nama_spektrum')->index();
-            $table->timestamp('created_at');
+         Schema::create('diagnosa', function (Blueprint $table) {
+            $table->increments('id');
+            $table->integer('id_user');
+            $table->integer('id_penyakit');
+            $table->timestamps();
         });
-       
     }
 
     /**

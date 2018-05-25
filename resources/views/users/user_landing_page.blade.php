@@ -5,6 +5,7 @@
 @endsection
 
 @section('content')
+@include('notif.notif')
 
     <div class="jumbotron">
 		  <h1>Selamat datang di sistem pakar diagnosa penyakit anak </h1>

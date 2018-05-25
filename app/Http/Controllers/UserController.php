@@ -99,8 +99,12 @@ class UserController extends Controller
 
     }
 
-    public function getHasilDiagnosa(){
-        return view('users/user_hasil');
+    public function getHasilDiagnosa($id_diagnosa){
+        $gejala= DiagnosaGejalaModel::where('id_diagnosa',$id_diagnosa)->get();
+        $diagnosa = DiagnosaModel::find($id_diagnosa);
+
+       
+        return view('users/user_hasil')->with(['diagnosa'=> $diagnosa, 'gejala' => $gejala]);
     }
 
     public function postDiagnosa(Request  $request){
@@ -233,23 +237,35 @@ class UserController extends Controller
         $p_big=$t_persen[0];
         $big=0;
         $big_index=0;
+        $big_persen=0;
         
         for ($i=0; $i <7 ; $i++) { 
             if ($p_big<$t_persen[$i]) {
                 $p_big=$t_persen[$i];
                 $big_index=$i;
+                
             }
         }
+
+        $big_persen = $t_persen[$big_index];
 
         $diagnosa= new DiagnosaModel();
         $diagnosa->id_user = Auth::user()->id;
         $diagnosa->id_penyakit= $big_index;
+
+        $namapenyakit = DB::table('penyakit')->where('id_penyakit',$big_index)->first();
+        $diagnosa->nama = $namapenyakit->nama_penyakit;
+        $diagnosa->persen = $big_persen;
         $diagnosa->save();
 
         for ($i=0; $i < $count ; $i++) { 
             $diagnosa_gejala = new DiagnosaGejalaModel;
             $diagnosa_gejala->id_diagnosa = $diagnosa->id;
             $diagnosa_gejala->id_gejala= $input[$i];
+            
+            $nama=DB::table('gejala')->where('kode_gejala',$input[$i])->first();
+            $diagnosa_gejala->nama= $nama->nama_gejala;
+
             $diagnosa_gejala->save();
         }
 
@@ -259,14 +275,23 @@ class UserController extends Controller
         echo ($big_index);
         dd($t_persen);
         */
-        
-        $pesan= "Diagnosa Telah dibuat, silahkan cek hasil dan nilai "
+
+        $pesan= "Diagnosa Telah dibuat, silahkan cek hasil dan nilai ";
 
         
         
-        return redirect()->route('user.hasildiagnosa')->with(['message'=> $pesan]);
+        return redirect()->route('user.daftarhasil')->with(['message'=> $pesan]);
 
     }
+
+
+    public function getHalamanHasil(){
+        $nama=Auth::user()->name;
+        $id= Auth::user()->id;
+        $diagnosa=  DiagnosaModel::where('id_user',$id)->get();
+        return view('users.hasil_diagnosa')->with(['id'=> $nama, 'diagnosa' => $diagnosa]);
+    }
+
 
 
 

@@ -61,7 +61,7 @@ Route::get('/user/diagnosa',[
   'middleware' => ['auth','user']
 ]);
 
-Route::get('/user/diagnosa/hasil',[
+Route::get('/user/diagnosa/hasil/{id_diagnosa}',[
   'uses' => 'UserController@getHasilDiagnosa',
   'as' => 'user.hasildiagnosa',
   'middleware' => ['auth','user']
@@ -72,4 +72,10 @@ Route::post('/user/postdiagnosa',[
   'uses' => 'UserController@postDiagnosa',
   'as' => 'user.postdiagnosa',
   'middleware' => ['auth','user']
+]);
+
+Route::get('/user/daftar_diagnosa',[
+	'uses' => 'UserController@getHalamanHasil',
+	'as' => 'user.daftarhasil',
+	'middleware' => ['auth','user']
 ]);

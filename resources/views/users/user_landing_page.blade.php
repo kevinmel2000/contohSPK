@@ -24,7 +24,7 @@
 	      <div class="caption">
 	        <h3>Daftar Diagnosa</h3>
 	        <p>List diagnosa yang pernah anda lakukan</p>
-	         <a href="#" class="btn btn-default" role="button">Lihat</a></p>
+	         <a href="{{(route('user.daftarhasil'))}}" class="btn btn-default" role="button">Lihat</a></p>
 	      </div>
 	    </div> 
 	  </div>

@@ -26,4 +26,6 @@ daftar diagnosa  {{$id}}
 
 
 
+
+
 @endsection

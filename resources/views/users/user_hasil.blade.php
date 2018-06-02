@@ -28,7 +28,8 @@
 </div>
 <hr>
 
-Penyakit yang mungkin adalah <b>{{$diagnosa->nama}}</b> dengan probabilitas sebesar <b>{{$diagnosa->persen}}%</b>
+Penyakit yang mungkin adalah <b>{{$diagnosa->nama}}</b> dengan probabilitas sebesar <b>{{$diagnosa->persen}}%</b><br><br>
+<a href="{{route('user.detaildiagnosa',['id_diagnosa'=> $diagnosa->id])}}" class="btn btn-default">Lihat Surat </a>
 
 
 

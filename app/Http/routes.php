@@ -79,3 +79,22 @@ Route::get('/user/daftar_diagnosa',[
 	'as' => 'user.daftarhasil',
 	'middleware' => ['auth','user']
 ]);
+
+Route::get('/user/detail_diagnosa/{id_diagnosa}',[
+	'uses' => 'UserController@getDetailDiagnosa',
+	'as' => 'user.detaildiagnosa',
+	'middleware' => ['auth','user']
+]);
+
+Route::get('/user/edit_profile/',[
+	'uses' => 'UserController@getEditProfile',
+	'as' => 'user.editprofile',
+	'middleware' => ['auth','user']
+]);
+
+Route::post('user/editprofile/verifying',[
+	'uses' => 'UserController@postEditProfile',
+	'as' => 'user.posteditprofile',
+	'middleware' => ['auth','user']
+]);
+

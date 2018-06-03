@@ -14,7 +14,7 @@
 	 <div class="row">
 	  <div class="col-sm-12 col-md-12">
 	    <div class="thumbnail">
-	      <img src="https://d1nhio0ox7pgb.cloudfront.net/_img/o_collection_png/green_dark_grey/256x256/plain/plus.png" height="100" width="100">
+	      <img src="http://i64.tinypic.com/1zmyp39.png" height="100" width="100">
 	      <div class="caption">
 	        <h3>Daftar Diagnosa</h3>
 	        <p>List diagnosa yang pernah anda lakukan</p>
@@ -29,7 +29,7 @@
 		 <div class="row">
 		  <div class="col-sm-12 col-md-12">
 		    <div class="thumbnail">
-		      <img src="https://d1nhio0ox7pgb.cloudfront.net/_img/o_collection_png/green_dark_grey/256x256/plain/plus.png" height="100" width="100">
+		      <img src="http://i68.tinypic.com/987xpz.png" height="100" width="100">
 		      <div class="caption">
 		        <h3>Pengaturan akun anda</h3>
 		        <p>pengaturan Informasi dasar anda</p>
@@ -62,11 +62,11 @@
 	 <div class="row">
 	  <div class="col-sm-12 col-md-12">
 	    <div class="thumbnail">
-	      <img src="https://d1nhio0ox7pgb.cloudfront.net/_img/o_collection_png/green_dark_grey/256x256/plain/plus.png" height="100" width="100">
+	      <img src="http://i64.tinypic.com/bhx7ao.png" height="100" width="100">
 	      <div class="caption">
 	        <h3>Daftar Penyakit </h3>
 	        <p>List Penyakit yang ada</p>
-	         <a href="#" class="btn btn-default" role="button">Lihat</a></p>
+	         <a href="{{route('user.penyakit')}}" class="btn btn-default" role="button">Lihat</a></p>
 	      </div>
 	    </div> 
 	  </div>

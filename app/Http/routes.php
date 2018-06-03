@@ -98,3 +98,14 @@ Route::post('user/editprofile/verifying',[
 	'middleware' => ['auth','user']
 ]);
 
+Route::get('user/list_penyakit/',[
+	'uses' => 'UserController@getListPenyakit',
+	'as' => 'user.penyakit',
+	'middleware' => ['auth','user']
+]);
+
+Route::get('user/detail_penyakit/{id}',[
+	'uses' => 'UserController@getDetailPenyakit',
+	'as' => 'user.detailpenyakit',
+	'middleware' => ['auth','user']
+]);

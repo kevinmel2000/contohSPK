@@ -402,6 +402,16 @@ class UserController extends Controller
 
     }
 
+    public function getListPenyakit(){
+        $penyakit= PenyakitModel::all();
+        return view('users.user_penyakit')->with('penyakit',$penyakit);
+    }
+
+    public function getDetailPenyakit($id){
+        $penyakit =  DB::table('penyakit')->where('id_penyakit',$id)->first();
+        return view('users.user_detail_penyakit')->with('penyakit',$penyakit);
+    }
+
 
 
 

@@ -9,7 +9,7 @@
 daftar diagnosa  {{$id}}
 <table class="table hover">
 	<thead>
-		<th>Gejala Yang dialami</th>
+		<th>ID Diagnosa</th>
 		<th>Tanggal</th>
 		<th>Lihat Detail</th>
 	</thead>
